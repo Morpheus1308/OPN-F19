@@ -7,12 +7,12 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=password
     volumes:
-      - ./resources:/docker-entrypoint-initdb.d
+      - ./database/resources:/docker-entrypoint-initdb.d
     networks:
       - backendNet
 
   backend:
-    image: backend
+    image: sieben8nein/takehomebackend
     depends_on:
       - db
     networks:
@@ -20,7 +20,7 @@ services:
       - frontendNet
   
   frontend:
-    image: frontend
+    image: sieben8nein/takehomefrontend
     depends_on: 
       - backend
     ports:
