@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - ./resources:/docker-entrypoint-initdb.d
+    networks:
+      - backendNet
+
+  backend:
+    image: backend
+    depends_on:
+      - db
+    networks:
+      - backendNet
+      - frontendNet
+  
+  frontend:
+    image: frontend
+    depends_on: 
+      - backend
+    ports:
+      - 8000:80
+    networks:
+      - frontendNet
+
+
+networks:
+  backendNet:
+    driver: bridge
+  frontendNet:
+    driver: bridge
