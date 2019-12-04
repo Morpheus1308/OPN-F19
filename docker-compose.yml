@@ -20,7 +20,7 @@ services:
       - frontendNet
   
   frontend:
-    image: sieben8nein/takehomefrontend
+    image: sieben8nein/takehomefrontend:1.1
     depends_on: 
       - backend
     ports:
