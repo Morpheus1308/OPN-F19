@@ -20,11 +20,12 @@ services:
       - frontendNet
   
   frontend:
-    image: sieben8nein/takehomefrontend:1.1
+    image: sieben8nein/takehomefrontend:1.3
     depends_on: 
       - backend
     ports:
       - 80:80
+      - 443:80
     networks:
       - frontendNet
 
